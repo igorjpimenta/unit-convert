@@ -27,12 +27,14 @@ def from_celsius(value, to_u):
         return value * 9.0 / 5.0 + 32.0
     return value + 273.15  # k
 
+ABSOLUTE_ZERO_C = -273.15
+
 def convert_temp(value, from_u, to_u):
-    c = to_celsius(value, from_u)
-    if to_u == "k" and (c + 273.15) < 0:
-        raise ValueError("result below absolute zero")
     if from_u == "k" and value < 0:
         raise ValueError("kelvin cannot be negative")
+    c = to_celsius(value, from_u)
+    if c < ABSOLUTE_ZERO_C - 1e-9:
+        raise ValueError("result below absolute zero")
     return from_celsius(c, to_u)
 
 def parse_args(argv=None):
