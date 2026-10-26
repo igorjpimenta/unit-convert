@@ -23,3 +23,9 @@ python3 convert.py 100 c f     # 212
 ```
 
 Invalid input exits non-zero with an error message.
+
+## Test
+
+```sh
+python3 test_convert.py
+```
